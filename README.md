@@ -5,12 +5,10 @@ Collaborative drawing application with rooms
 
 Clone repository:
 ```
-git clone https://github.com/Stepan-Samutichev/Doska.git
+git clone https://github.com/samutichev/Doska.git
 ```
 
 ```
 npm install
 npm start
 ```
-
-_https://doska2.herokuapp.com/_
