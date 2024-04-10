@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		/>
+		<link rel="stylesheet" href="css/board.css" />
+		<link
+			rel="shortcut icon"
+			href="assets/favicon.svg"
+			type="image/svg+xml"
+		/>
+		<title>Board — Samutichev</title>
+		<meta name="description" content="Board — Samutichev" />
+		<script src="js/lib/simplify-svg-path.js" defer></script>
+		<script src="js/lib/simplify.js" defer></script>
+		<script src="js/lib/panzoom.js" defer></script>
+		<script src="js/pan-zoom.js" defer></script>
+		<script src="js/functions.js" defer></script>
+		<script src="js/settings.js" defer></script>
+		<script src="js/draw.js" defer></script>
+		<script src="js/panels.js" defer></script>
+		<script src="js/lib/svg-export.min.js" defer></script>
+		<script src="js/export.js" defer></script>
+	</head>
+
+	<body oncontextmenu="return false;">
+		<div id="background"></div>
+		<svg xmlns="http://www.w3.org/2000/svg" id="board">
+			<g id="scene" class="scene"></g>
+		</svg>
+		<div class="panels">
+			<div class="topPanel">
+				<button
+					type="button"
+					id="exit"
+					onclick="location.href='/'"
+					data-tooltip="Exit"
+				></button>
+				<button
+					type="button"
+					id="link"
+					onclick="copyLink()"
+					data-tooltip="Copy link"
+				></button>
+				<button
+					type="button"
+					id="download"
+					onclick="exportBoardAsSVG()"
+					data-tooltip="Export as SVG"
+				></button>
+			</div>
+
+			<div class="dockPanel">
+				<div class="main-tools">
+					<div class="tools">
+						<button
+							type="button"
+							id="pen"
+							class="active"
+							onclick="changeAction(this)"
+							data-tooltip="Pen"
+						></button>
+						<button
+							type="button"
+							id="eraser"
+							onclick="changeAction(this)"
+							data-tooltip="Eraser"
+						></button>
+						<button
+							type="button"
+							id="clear"
+							onclick="clearBoard()"
+							data-tooltip="Clear board"
+						></button>
+					</div>
+					<div class="tools">
+						<button
+							id="color"
+							onwheel="scrollColor(event)"
+							data-tooltip="Change pen color"
+						></button>
+						<button
+							id="size"
+							onwheel="scrollSize(event)"
+							data-tooltip="Change pen size"
+						></button>
+						<button
+							id="pattern"
+							onwheel="scrollPattern(event)"
+							data-tooltip="Change background"
+						></button>
+					</div>
+				</div>
+				<div
+					id="sizes"
+					class="tools settings"
+					onwheel="scrollSize(event)"
+				>
+					<button
+						id="small"
+						onclick="setBrush({size: 3})"
+						data-tooltip="Small"
+					></button>
+					<button
+						id="medium"
+						class="active"
+						onclick="setBrush({size: 4})"
+						data-tooltip="Medium"
+					></button>
+					<button
+						id="large"
+						onclick="setBrush({size: 5})"
+						data-tooltip="Large"
+					></button>
+				</div>
+				<div
+					id="colors"
+					class="tools settings"
+					onwheel="scrollColor(event)"
+				>
+					<button
+						id="black"
+						class="active"
+						onclick="setBrush({color: 'black'})"
+						data-tooltip="Black"
+					></button>
+					<button
+						id="red"
+						onclick="setBrush({color: '#d01919'})"
+						data-tooltip="Red"
+					></button>
+					<button
+						id="yellow"
+						onclick="setBrush({color: '#eaae00'})"
+						data-tooltip="Yellow"
+					></button>
+					<button
+						id="green"
+						onclick="setBrush({color: '#16ab39'})"
+						data-tooltip="Green"
+					></button>
+					<button
+						id="blue"
+						onclick="setBrush({color: '#1678c2'})"
+						data-tooltip="Blue"
+					></button>
+					<input
+						type="color"
+						id="colorInput"
+						data-tooltip="Color palette"
+					/>
+				</div>
+				<div
+					id="patterns"
+					class="tools settings"
+					onwheel="scrollPattern(event)"
+				>
+					<button
+						id="none"
+						class="active"
+						onclick="setPattern('none')"
+						data-tooltip="Empty"
+					></button>
+					<button
+						id="sq"
+						onclick="setPattern('sq')"
+						data-tooltip="Checkered"
+					></button>
+					<button
+						id="line"
+						onclick="setPattern('line')"
+						data-tooltip="Lined"
+					></button>
+					<button
+						id="dot"
+						onclick="setPattern('dot')"
+						data-tooltip="Dotted"
+					></button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
